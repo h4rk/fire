@@ -1,4 +1,5 @@
-#fire - File rename utility v0.1
+#fire - File rename utility v0.2
+#last_modified: 11-11-2022
 #author: Alessandro Sala(ale.sala.97@gmail.com)
 import os
 import argparse
@@ -8,22 +9,21 @@ from glob import iglob
 def rename(old, new, path):
 
 	if path:
-		#folder = path+"/**/*"
 		folder = path
 	else:
-		#folder = os.getcwd()+"/**/*"
 		folder = os.getcwd()
 
-	#filelist = [f for f in iglob(folder, recursive=True) if os.path.isfile(f)]
 	filelist = os.listdir(folder)
 
 	print(filelist)
-	
+	count=0
 	for filename in filelist:
-		newName = filename.replace(old, new)
-		os.rename(filename, newName)
+		if old in filename:
+			newName = filename.replace(old, new)
+			os.rename(folder+"/"+filename, folder+"/"+newName)
+			count+=1
 
-	return "Done"
+	return "Done. " + str(count) + " element(s) renamed."
 
 	
 def main():
