@@ -3,7 +3,6 @@
 #author: Alessandro Sala(ale.sala.97@gmail.com)
 import os
 import argparse
-from glob import iglob
 
 
 def rename(old, new, path):
